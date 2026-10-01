@@ -1,0 +1,20 @@
+# what-am-i-missing
+
+> Open-source Agent Skill (SKILL.md) for Claude Code, Claude Desktop, Codex, Cursor and other AI agents. It performs gap analysis on a plan, brief, design doc or launch checklist against named laws, standards, frameworks and market benchmarks. Each finding cites its source, marks it as web-verified (✅) or recalled from memory (🧠), and gives the cheapest next check. A premortem pass adds the hidden assumption. Triggers on "what am I missing", "blind spots", "gaps" and "o que estou esquecendo".
+
+## Files
+- [SKILL.md](https://raw.githubusercontent.com/WednyFernandes/what-am-i-missing/main/skills/what-am-i-missing/SKILL.md): the skill itself (process, output format, verification rule, reference sets)
+- [README](https://github.com/WednyFernandes/what-am-i-missing/blob/main/README.md): install, usage, comparison, FAQ
+- [Example report](https://github.com/WednyFernandes/what-am-i-missing/blob/main/examples/roblox-fishing-simulator.md): full sample output for a Roblox simulator GDD
+
+## Install
+- Claude Code: `/plugin marketplace add WednyFernandes/what-am-i-missing`, then `/plugin install what-am-i-missing@what-am-i-missing`
+- Any agent: `npx skills add WednyFernandes/what-am-i-missing`
+- Manual: copy SKILL.md to `~/.claude/skills/what-am-i-missing/SKILL.md`
+
+## Key facts
+- Output: 3–7 ranked findings (🔴 blocker / 🟠 high / 🟢 nice-to-have), hidden assumption, "can wait" list with revisit triggers, first 3 actions, sources
+- It verifies law, regulation and platform-policy claims with web search and never invents norm numbers
+- Built-in reference sets: Brazilian e-commerce (CDC, LGPD, Decreto 7.962/2013, ANVISA), Roblox games (MDA, Octalysis, paid random items policy), SaaS (OWASP, WCAG 2.2, AARRR), marketing (AIDA, Core Web Vitals), business plans (Business Model Canvas, Porter)
+- It answers in the user's language (English and Portuguese tested)
+- License: MIT. Author: Wedny Fernandes (github.com/WednyFernandes)

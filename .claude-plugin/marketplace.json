@@ -1,0 +1,11 @@
+{
+  "name": "what-am-i-missing",
+  "owner": { "name": "Wedny Fernandes", "url": "https://github.com/WednyFernandes" },
+  "plugins": [
+    {
+      "name": "what-am-i-missing",
+      "source": "./",
+      "description": "Gap analysis for any plan against named laws, standards, frameworks and market benchmarks, with a premortem pass."
+    }
+  ]
+}
