@@ -52,12 +52,21 @@ The skill triggers on its own when you ask things like:
 
 It answers in the language you use.
 
+## Two modes: global or focused
+
+| You ask… | Mode | What it does |
+|---|---|---|
+| "What am I missing in this project?" (inside a repo or with a whole plan) | **Global** | Maps the project (README, ROADMAP, docs, manifests), sweeps every area (product, legal, security, accessibility, ops, monetization, marketing, metrics), adds a coverage table (✅ ok / ⚠️ gaps / ⬜ not reviewed), and gives 3–7 findings |
+| "What's missing in my privacy policy under LGPD?" / `foco: segurança` | **Focused** | Uses only references for that topic and goes deeper (articles, clauses), reads only the relevant files, gives 3–10 findings, plus at most 2 🔴 "out of focus" items it noticed |
+
+If the request is ambiguous, it runs global mode and offers a focused run at the end.
+
 ## Output format
 
 1. **Leitura** (how the skill reads your plan): the plan, its audience, what success means, and the assumptions made
 2. **Referências usadas** (references used): 3–6 named frameworks, laws or benchmarks
-3. **Já coberto** (already covered): what you already have
-4. **Achados** (findings): 3–7 of them, each with severity, a plain-terms explanation, the consequence, the source with ✅/🧠 confidence, and the cheapest check
+3. **Já coberto** (already covered): what you already have, plus a coverage-by-area table in global mode
+4. **Achados** (findings): 3–7 in global mode or 3–10 in focused mode, each with severity, a plain-terms explanation, the consequence, the source with ✅/🧠 confidence, and the cheapest check
 5. **Premissa escondida** (hidden assumption): the load-bearing assumption, plus an early-warning signal
 6. **Pode ficar pra depois** (can wait): low-priority items, each with the trigger for revisiting it
 7. **Comece por** (start with): the first 3 actions, by impact ÷ effort
