@@ -1,11 +1,23 @@
 {
   "name": "what-am-i-missing",
-  "owner": { "name": "Wedny Fernandes", "url": "https://github.com/WednyFernandes" },
+  "description": "Gap-analysis skill: find what a plan or project is missing against named laws, standards and benchmarks, with add/change/remove/pivot recommendations.",
+  "owner": {
+    "name": "Wedny Fernandes",
+    "url": "https://github.com/WednyFernandes"
+  },
   "plugins": [
     {
       "name": "what-am-i-missing",
       "source": "./",
-      "description": "Gap analysis for any plan against named laws, standards, frameworks and market benchmarks, with a premortem pass."
+      "description": "Gap analysis for any plan against named laws, standards, frameworks and market benchmarks, with a premortem pass.",
+      "version": "1.3.0",
+      "category": "productivity",
+      "tags": [
+        "gap-analysis",
+        "premortem",
+        "compliance",
+        "checklist"
+      ]
     }
   ]
 }

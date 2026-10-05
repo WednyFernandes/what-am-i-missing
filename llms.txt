@@ -13,10 +13,8 @@
 - Manual: copy SKILL.md to `~/.claude/skills/what-am-i-missing/SKILL.md`
 
 ## Key facts
-- Ends with a recommendations table: add / change / remove / pivot. Each row is tied to a finding, at least one removal is always considered, and a pivot is suggested only with evidence against the hidden assumption
-- Two modes: global (whole project or plan, with a coverage-by-area table, 3–7 findings) and focused (one question or area such as `foco: segurança`, deeper references, 3–10 findings)
-- Output: 3–7 ranked findings (🔴 blocker / 🟠 high / 🟢 nice-to-have), hidden assumption, "can wait" list with revisit triggers, first 3 actions, sources
-- It verifies law, regulation and platform-policy claims with web search and never invents norm numbers
-- Built-in reference sets: Brazilian e-commerce (CDC, LGPD, Decreto 7.962/2013, ANVISA), Roblox games (MDA, Octalysis, paid random items policy), SaaS (OWASP, WCAG 2.2, AARRR), marketing (AIDA, Core Web Vitals), business plans (Business Model Canvas, Porter)
-- It answers in the user's language (English and Portuguese tested)
+- Two modes: global (whole project or plan, coverage-by-area table, up to 7 findings) and focused (one question or area such as `foco: segurança`, deeper references, up to 10 findings). Findings are never padded.
+- Output: reading, references used, already covered, findings (severity, consequence, source ✅ verified / 🧠 memory, cheapest check), hidden assumption, can-wait list, recommendations table (add / change / remove / pivot), start with, sources. Section names are translated into the user's language.
+- A pivot is recommended only with verified evidence against the hidden assumption. With only remembered evidence it is conditional.
+- It respects the user's brevity limits, handles vague ideas, solid plans, no-web runs and non-Brazil jurisdictions, and never invents norm numbers
 - License: MIT. Author: Wedny Fernandes (github.com/WednyFernandes)

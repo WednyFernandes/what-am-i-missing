@@ -1,7 +1,7 @@
 {
   "name": "what-am-i-missing",
   "description": "Gap analysis for any plan against named laws, standards, frameworks and market benchmarks, with verified/memory source labels and a premortem pass.",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "author": { "name": "Wedny Fernandes", "url": "https://github.com/WednyFernandes" },
   "homepage": "https://github.com/WednyFernandes/what-am-i-missing",
   "repository": "https://github.com/WednyFernandes/what-am-i-missing",

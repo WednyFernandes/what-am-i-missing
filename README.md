@@ -4,9 +4,7 @@
 
 **`what-am-i-missing`** is an open-source [Agent Skill](https://agentskills.io) for **Claude Code**, Claude Desktop, Codex, Cursor and other AI coding agents. It finds what your plan, brief, game design doc, launch checklist or business idea leaves out. Every gap it reports is tied to a **named law, standard, framework or market benchmark**, so you can trace each finding back to its source.
 
-Ask *"what am I missing?"* (or in Portuguese, *"o que estou esquecendo?"*) and you get **3–7 ranked findings**. Each finding states its consequence, its source, whether that source was checked on the web this session (✅) or recalled from memory (🧠), and the **cheapest next check**. A **premortem** pass then surfaces the hidden assumption that could sink the plan.
-
-> Gap analysis · blind spots · premortem · compliance checklist · industry standards · best practices · LGPD · GDPR · CDC · WCAG · OWASP · MDA · Business Model Canvas
+Ask *"what am I missing?"* (or in Portuguese, *"o que estou esquecendo?"*) and you get **up to 7 ranked findings** (up to 10 in focused mode), never padded. Each finding states its consequence, its source, whether that source was checked on the web this session (✅) or recalled from memory (🧠), and the **cheapest next check**. A **premortem** pass then surfaces the hidden assumption that could sink the plan.
 
 ---
 
@@ -19,11 +17,11 @@ A plain "review my plan" prompt gives you a generic list of 30 tips with no sour
 | Generic best practices | Gaps checked against **3–6 named references** (laws, ISO/WCAG/OWASP, MDA, Canvas, competitors) |
 | Cites "the literature" vaguely | Names the actual source and marks it ✅ **verified** or 🧠 **from memory** |
 | May invent regulation numbers | **Verifies law, norm and platform-policy claims with web search** before stating them |
-| 20–30 unranked items | **3–7 findings** ranked 🔴 blocker, 🟠 high or 🟢 nice-to-have |
+| 20–30 unranked items | **Up to 7 findings** (10 when focused) ranked 🔴 blocker, 🟠 high or 🟢 nice-to-have |
 | "Consider testing X" | **Cheapest concrete check**, with time or cost where known |
 | Misses recent changes | **Fresh-eyes web scan** for new regulation, platform policy and market shifts |
 | Only adds more to-dos | Ends with a recommendations table: ➕ add, ✏️ change, ➖ **remove**, 🔀 **pivot** (evidence-gated) |
-| Only finds checklist items | **Premortem**: "it's 6 months later and this failed, why?", plus the hidden assumption |
+| Only finds checklist items | **Premortem**: "it failed at the first milestone, why?", plus the hidden assumption |
 | Repeats what you already track | Reads your docs first. Adds a **"Já coberto"** (already covered) section and a **"Pode ficar pra depois"** (can wait) section with a revisit trigger for each item |
 
 ## Install
@@ -57,22 +55,35 @@ It answers in the language you use.
 
 | You ask… | Mode | What it does |
 |---|---|---|
-| "What am I missing in this project?" (inside a repo or with a whole plan) | **Global** | Maps the project (README, ROADMAP, docs, manifests), sweeps every area (product, legal, security, accessibility, ops, monetization, marketing, metrics), adds a coverage table (✅ ok / ⚠️ gaps / ⬜ not reviewed), and gives 3–7 findings |
-| "What's missing in my privacy policy under LGPD?" / `foco: segurança` | **Focused** | Uses only references for that topic and goes deeper (articles, clauses), reads only the relevant files, gives 3–10 findings, plus at most 2 🔴 "out of focus" items it noticed |
+| "What am I missing in this project?" (inside a repo or with a whole plan) | **Global** | Maps the project (README, ROADMAP, docs, manifests), sweeps every area (product, legal, security, accessibility, ops, monetization, marketing, metrics), adds a coverage table (✅ ok / ⚠️ gaps / ⬜ not reviewed / n/a), and gives up to 7 findings |
+| "What's missing in my privacy policy under LGPD?" / `foco: segurança` | **Focused** | Uses only references for that topic and goes deeper (articles, clauses), reads only the relevant files, gives up to 10 findings, plus at most 2 🔴 "out of focus" items it noticed |
 
 If the request is ambiguous, it runs global mode and offers a focused run at the end.
 
 ## Output format
 
-1. **Leitura** (how the skill reads your plan): the plan, its audience, what success means, and the assumptions made
+Section names are translated into your language.
+
+1. **Leitura** (how the skill reads your plan): the plan, its audience, what success means, the mode, the jurisdiction assumed, and the assumptions made
 2. **Referências usadas** (references used): 3–6 named frameworks, laws or benchmarks
 3. **Já coberto** (already covered): what you already have, plus a coverage-by-area table in global mode
-4. **Achados** (findings): 3–7 in global mode or 3–10 in focused mode, each with severity, a plain-terms explanation, the consequence, the source with ✅/🧠 confidence, and the cheapest check
+4. **Achados** (findings): up to 7 in global mode or 10 in focused mode, never padded, each with severity, a plain-terms explanation, the consequence, the source with ✅/🧠 confidence, and the cheapest check
 5. **Premissa escondida** (hidden assumption): the load-bearing assumption, plus an early-warning signal
 6. **Pode ficar pra depois** (can wait): low-priority items, each with the trigger for revisiting it
-7. **Recomendações** (recommendations): a table of ➕ add / ✏️ change / ➖ remove / 🔀 pivot. Each row is tied to a finding. It always includes at least one removal, and a pivot only when there is evidence against the hidden assumption (otherwise "não recomendado" plus the reason)
-8. **Comece por** (start with): the first 3 recommendations, by impact ÷ effort
-9. **Fontes** (sources): links for every verified claim
+7. **Recomendações** (recommendations): a table of ➕ add / ✏️ change / ➖ remove / 🔀 pivot. Each row is tied to a finding. It always considers a removal (or says why none applies). A pivot is recommended only with **verified** evidence against the hidden assumption. With only remembered evidence it is conditional ("if check #N confirms, pivot to…"), and otherwise "não recomendado" plus the reason
+8. **Comece por** (start with): the 3 recommendations with the best impact ÷ effort
+9. **Fontes** (sources): links for every verified claim, or file paths for facts read from your project
+10. **Fora do foco** (out of focus, focused mode only): at most 2 🔴 items noticed outside the focus
+11. Closing question: *"Quais desses você já sabia?"* (which of these did you already know?)
+
+## Edge cases it handles
+
+- **You want it short** ("rapidinho", "in 5 lines", "TL;DR"): your limit wins. You get one line per finding, still with ✅/🧠 markers.
+- **Your plan is solid:** it reports only the real gaps and says so. It never invents findings to fill a quota.
+- **It's just a vague idea:** no fake analysis. It asks the one missing question and suggests 2–4 directions.
+- **Part of the plan is locked in** (lease signed, stock bought): that part is treated as a constraint, and only what can still change is analyzed.
+- **No web access:** every legal claim is labeled 🧠, and the first check is to verify the top blocker by hand.
+- **Outside Brazil:** the Brazilian defaults are swapped for local equivalents (FTC, GDPR/DSA…), and the jurisdiction assumed is stated.
 
 See a full sample report: [Roblox fishing simulator GDD](examples/roblox-fishing-simulator.md).
 
@@ -86,7 +97,7 @@ See a full sample report: [Roblox fishing simulator GDD](examples/roblox-fishing
 | Landing pages / marketing | AIDA/PAS, Cialdini, Core Web Vitals, CONAR/FTC disclosure |
 | Business plans | Business Model Canvas, Porter's Five Forces, unit economics (CAC/LTV), tax regime |
 
-The skill isn't limited to these domains. For any other domain it picks the right references itself.
+The skill isn't limited to these domains. For any other domain it picks the right references itself. The defaults assume Brazil, and other jurisdictions get local equivalents.
 
 ## FAQ
 
@@ -100,13 +111,13 @@ A premortem imagines failure. This skill also runs a **checklist sweep against n
 blindspot-audit is broader and stateful: it interviews you and keeps a ledger file between runs. `what-am-i-missing` is a single file and stateless, and it centers on **citing named references with verified/memory labels**. Ideas from both blindspot-audit and the [Klein-method premortem](https://github.com/b1rdmania/claude-premortem-skill) are credited below.
 
 **Does it need internet access?**
-It works without it. With web search, it verifies regulations and scans for recent changes. Without it, it labels those claims 🧠 "confirmar" (confirm before relying on it).
+It works without it. With web search, it verifies regulations and scans for recent changes. Without it, it labels those claims 🧠 "confirmar" (confirm before relying on it), says nothing was verified, and makes checking the top blocker by hand the first action. ✅ is only used when the source itself was opened, not a search snippet.
 
 ## Credits
 
 - Premortem method: Gary Klein, *Harvard Business Review* (2007). Skill inspiration: [b1rdmania/claude-premortem-skill](https://github.com/b1rdmania/claude-premortem-skill)
 - "Already covered / can wait / cheapest check" structure, inspired by [MJL-ren/blindspot-audit](https://github.com/MJL-ren/blindspot-audit)
-- Tested baseline-vs-skill following the [superpowers writing-skills](https://github.com/obra/superpowers) method
+- Built baseline-vs-skill following the [superpowers writing-skills](https://github.com/obra/superpowers) method, then QA'd with edge-case scenarios
 
 ## License
 
