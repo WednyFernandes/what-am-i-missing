@@ -22,6 +22,7 @@ A plain "review my plan" prompt gives you a generic list of 30 tips with no sour
 | 20–30 unranked items | **3–7 findings** ranked 🔴 blocker, 🟠 high or 🟢 nice-to-have |
 | "Consider testing X" | **Cheapest concrete check**, with time or cost where known |
 | Misses recent changes | **Fresh-eyes web scan** for new regulation, platform policy and market shifts |
+| Only adds more to-dos | Ends with a recommendations table: ➕ add, ✏️ change, ➖ **remove**, 🔀 **pivot** (evidence-gated) |
 | Only finds checklist items | **Premortem**: "it's 6 months later and this failed, why?", plus the hidden assumption |
 | Repeats what you already track | Reads your docs first. Adds a **"Já coberto"** (already covered) section and a **"Pode ficar pra depois"** (can wait) section with a revisit trigger for each item |
 
@@ -69,8 +70,9 @@ If the request is ambiguous, it runs global mode and offers a focused run at the
 4. **Achados** (findings): 3–7 in global mode or 3–10 in focused mode, each with severity, a plain-terms explanation, the consequence, the source with ✅/🧠 confidence, and the cheapest check
 5. **Premissa escondida** (hidden assumption): the load-bearing assumption, plus an early-warning signal
 6. **Pode ficar pra depois** (can wait): low-priority items, each with the trigger for revisiting it
-7. **Comece por** (start with): the first 3 actions, by impact ÷ effort
-8. **Fontes** (sources): links for every verified claim
+7. **Recomendações** (recommendations): a table of ➕ add / ✏️ change / ➖ remove / 🔀 pivot. Each row is tied to a finding. It always includes at least one removal, and a pivot only when there is evidence against the hidden assumption (otherwise "não recomendado" plus the reason)
+8. **Comece por** (start with): the first 3 recommendations, by impact ÷ effort
+9. **Fontes** (sources): links for every verified claim
 
 See a full sample report: [Roblox fishing simulator GDD](examples/roblox-fishing-simulator.md).
 

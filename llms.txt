@@ -13,6 +13,7 @@
 - Manual: copy SKILL.md to `~/.claude/skills/what-am-i-missing/SKILL.md`
 
 ## Key facts
+- Ends with a recommendations table: add / change / remove / pivot. Each row is tied to a finding, at least one removal is always considered, and a pivot is suggested only with evidence against the hidden assumption
 - Two modes: global (whole project or plan, with a coverage-by-area table, 3–7 findings) and focused (one question or area such as `foco: segurança`, deeper references, 3–10 findings)
 - Output: 3–7 ranked findings (🔴 blocker / 🟠 high / 🟢 nice-to-have), hidden assumption, "can wait" list with revisit triggers, first 3 actions, sources
 - It verifies law, regulation and platform-policy claims with web search and never invents norm numbers
